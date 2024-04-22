@@ -15,6 +15,7 @@ data_dict = {
     "ETTm2": Dataset_ETT_minute,
     "Solar": Dataset_Solar,
     "PEMS": Dataset_PEMS,
+    "EIS": Dataset_EIS,
     "custom": Dataset_Custom,
 }
 

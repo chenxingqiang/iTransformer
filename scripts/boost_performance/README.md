@@ -15,6 +15,7 @@ bash ./scripts/boost_performance/Traffic/iTransformer.sh
 You can change the ```model_name``` in the script to select one Transformer variant and its inverted version.
 
 ## Results
+
 We compare the performance of Transformer and iTransformer on all six datasets, indicating that the attention and feed-forward network on the
 inverted dimensions greatly empower Transformers in multivariate time series forecasting.
 

@@ -47,7 +47,6 @@ python -u run.py \
   --itr 1
 ```
 
-
 ## Training on Custom Dataset
 
 To train with your own time series dataset, you can try out the following steps:

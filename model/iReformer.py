@@ -20,24 +20,34 @@ class Model(nn.Module):
         self.pred_len = configs.pred_len
         self.output_attention = configs.output_attention
         # Embedding
-        self.enc_embedding = DataEmbedding_inverted(configs.seq_len, configs.d_model, configs.embed, configs.freq,
-                                                    configs.dropout)
+        self.enc_embedding = DataEmbedding_inverted(
+            configs.seq_len,
+            configs.d_model,
+            configs.embed,
+            configs.freq,
+            configs.dropout,
+        )
         # Encoder-only architecture
         self.encoder = Encoder(
             [
                 EncoderLayer(
-                    ReformerLayer(None, configs.d_model, configs.n_heads,
-                                  bucket_size=4, n_hashes=4),
+                    ReformerLayer(
+                        None,
+                        configs.d_model,
+                        configs.n_heads,
+                        bucket_size=4,
+                        n_hashes=4,
+                    ),
                     configs.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,
-                    activation=configs.activation
-                ) for l in range(configs.e_layers)
+                    activation=configs.activation,
+                )
+                for l in range(configs.e_layers)
             ],
-            norm_layer=torch.nn.LayerNorm(configs.d_model)
+            norm_layer=torch.nn.LayerNorm(configs.d_model),
         )
         self.projector = nn.Linear(configs.d_model, configs.pred_len, bias=True)
-
 
     def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
         # Normalization from Non-stationary Transformer
@@ -58,7 +68,6 @@ class Model(nn.Module):
         dec_out = dec_out + (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
         return dec_out
 
-
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
         dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
-        return dec_out[:, -self.pred_len:, :]  # [B, L, D]
+        return dec_out[:, -self.pred_len :, :]  # [B, L, D]

@@ -11,7 +11,7 @@ The repo is the official implementation for the paper: [iTransformer: Inverted T
 > **[Better Utilization of Lookback Windows](scripts/increasing_lookback/README.md)**: While Transformer does not necessarily benefit from the larger lookback window, inverted Transformers exhibit better utilization of the enlarged lookback window.
 
 > **[Adopt Efficient Attention and Training Strategy](scripts/model_efficiency/README.md)**: By inverting, efficient attention mechanisms and strategy can be leveraged to reduce the complexity of high-dimensional time series.
- 
+
 # Updates
 
 :triangular_flag_on_post: **News** (2024.03) Introduction of our work in [Chinese](https://mp.weixin.qq.com/s/-pvBnA1_NSloNxa6TYXTSg) is available.
@@ -25,7 +25,6 @@ The repo is the official implementation for the paper: [iTransformer: Inverted T
 :triangular_flag_on_post: **News** (2023.10) iTransformer has been included in [[Time-Series-Library]](https://github.com/thuml/Time-Series-Library) and achieve the consistent state-of-the-art in long-term time series forecasting.
 
 :triangular_flag_on_post: **News** (2023.10) All the scripts for the above tasks in our [paper](https://arxiv.org/pdf/2310.06625.pdf) are available in this repo.
-
 
 ## Introduction
 
@@ -43,8 +42,6 @@ The repo is the official implementation for the paper: [iTransformer: Inverted T
 
 😊 **iTransformer** is repurposed on the vanilla Transformer. We think the "passionate modification" of Transformer has got too much attention in the research area of time series. Hopefully, the mainstream work in the following can focus more on the dataset infrastructure and consider the scale-up ability of Transformer.
 
-
-
 ## Overall Architecture
 
 iTransformer regards **independent time series as variate tokens** to **capture multivariate correlations by attention** and **utilize layernorm and feed-forward networks to learn series representations**.
@@ -59,7 +56,7 @@ The pseudo-code of iTransformer is as simple as the following:
 <img src="./figures/algorithm.png" alt="" align=center />
 </p>
 
-## Usage 
+## Usage
 
 1. Install Pytorch and necessary dependencies.
 
@@ -89,6 +86,7 @@ bash ./scripts/efficient_attentions/iFlashTransformer.sh
 ```
 
 ## Main Result of Multivariate Forecasting
+
 We evaluate the iTransformer on extensive challenging multivariate forecasting benchmarks as well as the server load prediction of Alipay online transactions (**generally hundreds of variates**, denoted as *Dim*). **Comprehensive good performance** (MSE/MAE) is achieved by iTransformer. iTransformer is particularly good at forecasting high-dimensional time series.
 
 <p align="center">
@@ -101,9 +99,7 @@ We evaluate the iTransformer on extensive challenging multivariate forecasting b
 <img src="./figures/main_results.png" alt="" align=center />
 </p>
 
-
-
-### Online Transaction Load Prediction of Alipay Trading Platform (Avg Results) 
+### Online Transaction Load Prediction of Alipay Trading Platform (Avg Results)
 
 <p align="center">
 <img src="./figures/main_results_alipay.png" alt="" align=center />
@@ -135,7 +131,7 @@ While previous Transformers do not necessarily benefit from the increase of hist
 
 ## Model Analysis
 
-Benefiting from inverted Transformer modules: 
+Benefiting from inverted Transformer modules:
 
 - (Left) Inverted Transformers learn **better time series representations** (more similar [CKA](https://github.com/jayroxis/CKA-similarity)) favored by time series forecasting.
 - (Right) The inverted self-attention module learns **interpretable multivariate correlations**.
@@ -168,7 +164,7 @@ We propose a training strategy for multivariate series by taking advantage of it
 
 ## Citation
 
-If you find this repo helpful, please cite our paper. 
+If you find this repo helpful, please cite our paper.
 
 ```
 @article{liu2023itransformer,
@@ -182,15 +178,16 @@ If you find this repo helpful, please cite our paper.
 ## Acknowledgement
 
 We appreciate the following GitHub repos a lot for their valuable code and efforts.
-- Reformer (https://github.com/lucidrains/reformer-pytorch)
-- Informer (https://github.com/zhouhaoyi/Informer2020)
-- FlashAttention (https://github.com/shreyansh26/FlashAttention-PyTorch)
-- Autoformer (https://github.com/thuml/Autoformer)
-- Stationary (https://github.com/thuml/Nonstationary_Transformers)
-- Time-Series-Library (https://github.com/thuml/Time-Series-Library)
+
+- Reformer (<https://github.com/lucidrains/reformer-pytorch>)
+- Informer (<https://github.com/zhouhaoyi/Informer2020>)
+- FlashAttention (<https://github.com/shreyansh26/FlashAttention-PyTorch>)
+- Autoformer (<https://github.com/thuml/Autoformer>)
+- Stationary (<https://github.com/thuml/Nonstationary_Transformers>)
+- Time-Series-Library (<https://github.com/thuml/Time-Series-Library>)
 
 ## Contact
 
 If you have any questions or want to use the code, feel free to contact:
-* Yong Liu (liuyong21@mails.tsinghua.edu.cn)
-* Haoran Zhang (z-hr20@mails.tsinghua.edu.cn)
+- Yong Liu (<liuyong21@mails.tsinghua.edu.cn>)
+- Haoran Zhang (<z-hr20@mails.tsinghua.edu.cn>)
